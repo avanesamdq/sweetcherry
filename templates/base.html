@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetCherry {%block titulo%}{%endblock%}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename= '/img/sc.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename= '/css/styles.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" />`
+
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+    <header>
+            
+            <nav class="nav">
+                <ul class="menu">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="{{ url_for('bikinis') }}">Bikinis</a></li>
+                    <li><a href="{{ url_for('enterizos') }}">Enterizos</a></li>
+                    <li><a href="{{ url_for('accesorios') }}">Accesorios</a></li>
+                </ul>
+            </nav>
+        
+            <div class="usuario">
+                <a href="{{url_for('products') }}">
+                    <abbr title="Carrito">
+                        <img src="{{ url_for('static', filename= '/img/carro.png' ) }}">
+                    </abbr></a>
+
+                {% if g.user %}
+                <span>{{ g.user }}</span>
+                <a class="clear" href="{{ url_for('logout')}}">
+                    <abbr title="Cerrar Sesion">
+                        <i class="fa fa-times" aria-hidden="true" style="width: 30px; height: 30px; text-align: center;"></i>
+                    </abbr></a>
+    
+                
+                {% else %}
+                <a class="login" href="{{ url_for('login')}}">
+                    <abbr title="Cuenta">
+                        <img src="{{ url_for('static', filename= '/img/usuario_cora.png')}}" alt="">
+                    </abbr></a>              
+                {% endif %}
+            </div>
+
+    </header>
+    <div class="contenedor-titulo">
+        <h1 class="tituloPrimario">SweetCherry</h1>
+    </div>
+    
+            
+    {% with messages = get_flashed_messages(with_categories= True) -%}
+    {%if messages -%}
+    <ul>
+        {%for category, message in messages -%}
+        <li class="{{category}}">{{ message }}</li>
+        {%- endfor%}
+    </ul>
+    {%- endif%}
+    {%- endwith%}
+    <div>
+        {% block content -%}
+
+        <div id="carouselExample" class="carousel slide" >
+
+            <div class="carousel-indicators" >
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" ></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="carru1" src="{{ url_for('static', filename= '/img/carru1.jpg') }}" >
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename= '/img/carru2.jpg') }}"  height="500" width="500">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename= '/img/carru3.jpg') }}"  height="500" width="500">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename= '/img/carru4.jpg') }}"  height="500" width="500">
+                </div>
+                
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true" id="lolo"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+       
+
+    
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+        {%- endblock %}
+    </div>
+
+    {% if g.user %}
+
+    
+    {% else %}
+
+    <div class="padre">
+        
+        <input type="checkbox" id="caja">  <!--modal-->
+        <label id='btn-cerrar-sociales' for="caja">&nbsp;</label>
+
+        <div class="hijo" width ="180px" height="180"><img class="fotDedo"  src="{{ url_for('static', filename= '/img/dos_manos.png') }}" width="100px" height="100px" > 
+            <p>
+                Registrate con nosostros para mejor atencion tales como: <br>
+                <br>
+            • Seguimiento del envio <br>
+            • Rebajas y descuentos de tu localidad <br>
+            • Sorteos Mensuales <br>
+            • Acumula cupones para recibir prendas gratis <br>
+            </p>
+        </div>   
+    </div> 
+    {% endif %}
+
+            <div class="bajo-ca">
+                <div class="baj-1">
+                    <figure>
+                        <a href="#">
+                            <i class="fa fa-headphones" aria-hidden="true" style="color: #ed5090;"></i>
+                        </a>
+                        
+                    </figure>
+                    <div class="bajo-ca-cont">
+                        <ul>
+                            <h3 style="text-align: left;">Atencion al cliente</h3>
+                            <li><a href="#"><p>Puntos de Venta</p></a></li>
+                            <li><a href="#"><p>Envios, cambios y devoluciones</p></a></li>
+                            <li><a href="#"><p>Promociones y Formas de pago</p></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <div class="baj-1">
+                    <figure >
+                        <a href="#">
+                            <i class="fa fa-truck" aria-hidden="true" style="color: #ed5090;" ></i>
+                        </a>
+                        
+                    </figure>
+                    <div class="bajo-ca-cont">
+                        <ul>
+                            <h3 style="text-align: left;">Envios</h3>
+                            <li><a href="#"><p>Envios Nacionales</p></a></li>
+                            <li><a href="#"><p>Llevamos tus productos Gratis</p></a></li>
+                            <li><a href="#"><p>Envios a otros Paises</p></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="baj-1">
+                    <figure >
+                        <a href="#">
+                            <i class="fa fa-shield" aria-hidden="true" style="color: #ed5090;" ></i>
+                        </a>
+                        
+                    </figure>
+                    <div class="bajo-ca-cont">
+                        <ul>
+                            <h3 style="text-align: left;">Legales</h3>
+                            <li><a href="#"><p>Politicas de privacidad y seguridad</p></a></li>
+                            <li><a href="#"><p>Terminos y Condiciones</p></a></li>
+                            <li><a href="#"><p>Terminos ded Reembolso y devoluciones</p></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+           
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <footer> 
+        <h5>Seguinos en redes sociales</h5>
+        <ul>
+            <li style="--clr:#74ff83">
+                <a href="https://www.whatsapp.com/?lang=es">
+                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                </a>
+            </li>
+
+            <li style="--clr:#728eff">
+                <a href="https://es-la.facebook.com/">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+
+            <li style="--clr:#ff5594">
+                <a href="https://www.instagram.com/">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+            </li>
+
+            <li style="--clr:#ff5237">
+                <a href="https://ar.pinterest.com/">
+                    <i class="fa fa-pinterest" aria-hidden="true"></i>
+                </a>
+            </li>
+
+            <li style="--clr:#5ab8e9">
+                <a href="https://twitter.com/?lang=es">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+
+
+        </ul>
+    </footer>
+</body>
+</html>

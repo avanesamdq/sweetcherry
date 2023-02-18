@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+{%block titulo%} Registrarse {%endblock%}
+
+{%- block content %}
+
+<div class="pagLoginPrincipal">
+
+    <div class="pag-Luno">
+        <h1>Iniciar Sesion</h1>
+        <form method="POST" action="{{ url_for('login') }}" >
+            <hr>
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" name="correo" placeholder="name@example.com" required>
+                <label for="correo">Direccion de email</label>
+              </div>
+
+              <div class="form-floating">
+                <input type="password" class="form-control" name="contrasena" placeholder="Password" required>
+                <label for="contrasena">Contraseña</label>
+              </div> <br>
+
+            <input class="isboton" type="submit" value="Iniciar Sesion">
+        </form>
+    </div>
+
+    <div class="tre"><span></span><p></p></div>
+
+
+    <div class="pag-Ldos">
+        <h1> Crea una cuenta </h1>
+        <p>
+            Registrate con nosotras es super facil y seguro!
+            <hr>
+            Podras ver a detalles tus compras
+        </p>
+        
+            <a class="btn btn-primary" href="{{ url_for('registrarse')}}" role="button"> Registrarse</a>
+
+    </div>
+    
+    
+    
+
+</div>
+
+
+{%- endblock%}

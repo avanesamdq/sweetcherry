@@ -1,0 +1,109 @@
+{%extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <p><h2>Obtenga aún más con nuestras tarjetas de regalo y cupones </h2>
+        <h5>
+            Cree e inicie sesión con nosotros para acceder a estas increíbles oportunidades
+        </h5></p>
+        <div class="col-sm-12">
+
+
+            <div>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                 <ul class=flashes>
+                 {% for message in messages %}
+                   <li>{{ message }}</li>
+                 {% endfor %}
+                 </ul>
+                  {% endif %}
+                {% endwith %}
+            </div>
+
+
+
+            {% if 'cart_item' in session %}
+            <div class="btn-danger1">
+                <p><a id="btnEmpty" href="{{ url_for('empty_cart')}}" class="btn-danger">Empty Cart</a></p>
+            </div>
+            <hr>
+               
+                <table class="table table-hover">
+                    <thead class="men-pro">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th class="text-center">Precio por Unidad</th>
+                            <th class="text-center">Precio</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for key, val in session['cart_item'].items() %}
+                            {% set quantity = session['cart_item'][key]['quantity'] %}
+                            {% set price = session['cart_item'][key]['price'] %}
+                            {% set item_price = session['cart_item'][key]['total_price'] %}
+                            <tr>
+                                <td class="col-sm-8 col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="/static/productos/{{session['cart_item'][key]['image']}}" style="width: 72px; height: 72px;"></a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"> <a href="#">{{ session['cart_item'][key]['nombre'] }}</a></h4>
+                                            <h5 class="media-heading"> by <a href="#">SC Siren</a></h5>
+                                            <span>Estado: </span><span class="text-success"><strong>En Stock</strong></span>
+
+                                        </div>
+
+                                    </div></td>
+                                    <td class="col-sm-1 col-md-1" style="text-align: center;">
+                                        <input type="email" class="form-control" value="{{ quantity }}">
+                                    </td>
+                                    <td class="col-sm-1 col-md-1 text-center" > <strong> $ {{ price }}</strong></td>
+                                    <td class="col-sm-1 col-md-1 text-center"> <strong> $ {{ item_price }}</strong></td>
+                                    <td class="col-sm-1 col-md-1">
+                                        <a href="{{ url_for('delete_product', code=session['cart_item'][key]['code']) }}" class="btn btn-danger" style="background-color: #ff036c; border: #ff036c;">
+                                            <span class="glyphicon glyphicon-remove"></span> Eliminar
+                                        </a></td>
+
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="4"><h5>Total Cantidad</h5></td>
+                            <td class="text-right"><h5><strong>{{ session['all_total_quantity'] }}</strong></h5></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><h3>Total</h3></td>
+                            <td colspan="2" class="text-right"><h3><strong>$ {{ session['all_total_price'] }}</strong></h3></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphico-shopping-cart"></span> Seguir Comprando
+                                </button></td>
+                                <td >
+                                    <button type="button" class="btn btn-success" style="background-color: rgba(0, 255, 255, 0.345); color: black;">
+                                        Checkout <span class="glyphicon glyphicon-play" ></span>
+                                    </button></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            {% else %}
+                <div class="no-records">Tu carrito esta vacío!</div>
+            {% endif%}
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

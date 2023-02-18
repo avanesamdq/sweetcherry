@@ -1,0 +1,67 @@
+{%extends 'base.html'%}
+{%block titulo%} Registrarse {%endblock%}
+
+{%- block content %}
+
+<div class="contenRegi">
+
+    <form method="POST" action="{{ url_for('registrarse') }}" >
+
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nombres" aria-label="Username" minlength="2"  required>
+        </div>
+
+    
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Apellidos" aria-label="apellido" minlength="2" required>
+        </div>
+
+
+    
+        <div class="mb-3">
+            <label for="crear-email" class="form-label">Crea tu direccion de email</label>
+
+            <div class="input-group">
+                <span class="input-group-text" id="ce">fulano23@example.com</span>
+
+                <input type="email" class="form-control" placeholder="Correo Electronico" id="crear-email" name="correo"  aria-describedby="ce" minlength="15" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+            </div>
+
+        <div class="form-text">Ejemplo de como puedes crear tu email</div>
+        </div>
+
+
+    
+        <div class="input-group mb-3">
+            <div class="input-group">
+                
+            <span class="input-group-text">Contraseña</span>
+            <input type="password" class="form-control" placeholder="Crea una Contraseña"  name="contrasena" required>
+
+            </div>
+            <div class="form-text">Tu Contraseña debe tener entre 8 a 20 caracteres</div>
+        </div>
+    
+       
+    
+        <div class="input-group22" >
+            <label for="confcontra" class="form-label">Confirma tu contraseña</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="confcontra" placeholder="contraseña" name="contra2">
+            </div>
+        </div> <br>
+
+        <div class="bot-regi">
+              <input class="bot-regi1" type="submit" value="Registrarse">
+        </div>
+
+        
+
+    </form>
+
+
+</div>
+
+
+
+{%- endblock%}
